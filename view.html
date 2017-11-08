@@ -11,12 +11,15 @@
             <widget-icon name="angle-right"></widget-icon>
         </widget-cell>
     </widget-row>
-    <wr>
-        <div class="ui-widget">
-            <label for="tags">Tags: </label>
-            <input id="tags">
-        </div>
+    <wr class="conf_row" clickable ng-click="goToConfig()">
+        <wc fill>
+            <span class="itemName">Configure Plan</span>
+        </wc>
+        <wc>
+            <widget-icon name="wrench"></widget-icon>
+        </wc>
     </wr>
+    
     <wr>
         <div class="progress" style="height: 15px; width: 90%; margin-left: 5%">
             <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{first}}%"></div>
@@ -36,7 +39,8 @@
 
     <widget-row ng-repeat="req in detailsItem.requirements">
         <widget-cell>
-            <input id="checkBox" type="checkbox" ng-model="checkbox.value" ng-change="checkboxChanged()"/> <!--Need to link checkboxes-->
+            <input id="checkBox" type="checkbox" ng-model="checkbox.value" ng-change="checkboxChanged()"/>
+            <!--Need to link checkboxes-->
         </widget-cell>
         <widget-cell fill clickable ng-click="showDetailDetails(req)">
             <span class="itemName">{{req.title}}</span>
@@ -62,15 +66,19 @@
 </script>
 
 <script type="text/ng-template" id="degreeTracker1Config.html">
+    <wr>
+        <div class="ui-widget">
+            <label for="tags">Plan: </label>
+            <input id="tags" />
+        </div>
+    </wr>
     <widget-row ng-repeat="item in items" clickable ng-click="showDetails(item)">
-        <widget-cell fill>
-            <span class="itemName">{{item.title}}</span>
-            <span ng-repeat="tag in item.tags" class="label label-success">
-				{{tag}}
-			</span>
-        </widget-cell>
         <widget-cell>
-            <widget-icon name="angle-right"></widget-icon>
+            <input id="checkBox" type="checkbox" ng-model="checkbox.value" ng-change="checkboxChanged()"/>
+            <!--Need to link checkboxes-->
+        </widget-cell>
+        <widget-cell fill clickable ng-click="showDetailDetails(req)">
+            <span class="itemName">{{item.title}}</span>
         </widget-cell>
     </widget-row>
 </script>
