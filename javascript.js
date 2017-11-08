@@ -37,12 +37,9 @@ angular.module('portalApp')
         
         $scope.items = [CS_Major, CS_Minor, CO_Major, CO_Minor, PMATH_Major, PMATH_Minor];
 
-        // Show main view in the first column as soon as controller loads
         $scope.portalHelpers.showView('degreeTracker1Main.html', 1);
 
-        // This function gets called when user clicks an item in the list
         $scope.showDetails = function(item) {
-            // Make the item that user clicked available to the template
             $scope.detailsItem = item;
             $scope.portalHelpers.showView('degreeTracker1Details.html', 2);
         };
