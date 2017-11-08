@@ -27,12 +27,12 @@ angular.module('portalApp')
 		},
 		{
 			title:'Cognitive Science',
-			tags: ['Minor'],
+			tags: ['tag A', 'tag H'],
 			details: 'Donec id quam eu odio feugiat sagittis. Duis a tempus neque. Praesent elementum quis ante quis commodo. Sed tincidunt aliquet dolor sit amet laoreet. '
 		},
 		{
-			title:'Computational Fine Arts',
-			tags: ['Option'],
+			title:'Business',
+			tags: ['tag I'],
 			details: 'Proin sem quam, rutrum id ante id, scelerisque tempor quam. Curabitur pharetra turpis at sem placerat, non vehicula ligula tincidunt.'
 		},
 		{
