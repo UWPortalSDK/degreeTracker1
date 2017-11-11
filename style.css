@@ -1,7 +1,9 @@
 .label{
 	margin-right:5px;
 }
-
+.itemName {
+    width: 100%
+}
 .conf_row{
-    color: red;
+    color: #EA6D6D;
 }
