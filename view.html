@@ -1,27 +1,24 @@
 <!-- Primary template that will get shown when widget loads -->
 <script type="text/ng-template" id="degreeTracker1Main.html">
-    <widget-row ng-repeat="item in items" clickable ng-click="showDetails(item)">
+    <widget-row ng-repeat="item in myPlans" clickable ng-click="showDetails(item)">
         <widget-cell fill>
             <span class="itemName">{{item.title}}</span>
-            <span ng-repeat="tag in item.tags" class="label label-success">
-				{{tag}}
-			</span>
         </widget-cell>
         <widget-cell>
             <widget-icon name="angle-right"></widget-icon>
         </widget-cell>
     </widget-row>
-    <wr class="conf_row" clickable ng-click="goToConfig()">
+    <wr class="primary" clickable ng-click="goToConfig()">
         <wc fill>
-            <span class="itemName">Configure Plan</span>
+            <span class="accent">Configure Plan</span>
         </wc>
         <wc>
             <widget-icon name="wrench"></widget-icon>
         </wc>
     </wr>
-    
+
     <wr>
-        <div class="progress" style="height: 15px; width: 90%; margin-left: 5%">
+        <div class="progress" style="height: 15px; width: 90%; margin-left: 5%" data-ng-init="init()">
             <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{first}}%"></div>
             <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{second}}%"></div>
             <div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{third}}%"></div>
@@ -36,13 +33,11 @@
     </wr>
 
     <widget-row ng-repeat="req in detailsItem.requirements">
-        <widget-cell>
-            <input id="req.checkBox" type="checkbox" ng-model="req.checkbox.value" ng-change="checkboxChanged()"/>
+        <widget-cell fill clickable>
+            <label class="fill">
+                <input id="req.checkBox" type="checkbox" ng-model="req.checkbox.value" ng-change="checkboxChanged(myCourses)" /> {{req.title}}</label>
         </widget-cell>
-        <widget-cell fill clickable ng-click="showDetailDetails(req)">
-            <span class="itemName">{{req.title}}</span>
-        </widget-cell>
-        <widget-cell>
+        <widget-cell clickable ng-click="showDetailDetails(req)">
             <widget-icon name="angle-right"></widget-icon>
         </widget-cell>
     </widget-row>
@@ -63,17 +58,15 @@
 
 <script type="text/ng-template" id="degreeTracker1Config.html">
     <wr>
-        <div class="ui-widget">
-            <label for="tags">Plan: </label>
-            <input id="tags" />
+        <div>
+            <label for="tags">Search: </label>
+            <input type="text" id="tags" ng-model="searchBox.title" />
+            <widget-row ng-repeat="item in allPlans | filter: searchBox" clickable>
+                <widget-cell fill>
+                    <label class="fill">
+                    <input id="item.checkBox" type="checkbox" ng-model="item.checkbox.value" ng-change="checkboxChanged()"/> {{item.title}}</label>
+                </widget-cell>
+            </widget-row>
         </div>
     </wr>
-    <widget-row ng-repeat="item in items">
-        <widget-cell>
-            <input id="item.checkBox" type="checkbox" ng-model="item.checkbox.value" ng-change="checkboxChanged()"/>
-        </widget-cell>
-        <widget-cell fill>
-            <span class="itemName">{{item.title}}</span>
-        </widget-cell>
-    </widget-row>
 </script>
