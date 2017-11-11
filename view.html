@@ -60,7 +60,7 @@
     <wr>
         <div>
             <label for="tags">Search: </label>
-            <input type="text" id="tags" ng-model="searchBox" />
+            <input type="text" id="tags" ng-model="searchBox.title" />
             <widget-row ng-repeat="item in allPlans | filter: searchBox" clickable>
                 <widget-cell fill>
                     <label class="fill">
