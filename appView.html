@@ -1,20 +1,72 @@
 <!-- Primary template that will get shown when widget loads -->
-<script type="text/ng-template" id="degreeTracker1Main.html"> 
-	<div class="item item-text-wrap item-icon-right" ng-repeat="item in items" ng-click="showDetails(item)">
-		<span class="itemName">{{item.title}}</span>
-		<span ng-repeat= "tag in item.tags" class="badge badge-balanced">
-			{{tag}}
-		</span>
-	
-		<i class="ion-chevron-right icon"></i>
-	</div>
+<script type="text/ng-template" id="degreeTracker1Main.html" data-ng-init="init()">
+    <widget-row ng-repeat="item in myPlans" clickable ng-click="showDetails(item)">
+        <widget-cell fill>
+            <span class="itemName">{{item.title}}</span>
+        </widget-cell>
+        <widget-cell>
+            <widget-icon name="angle-right"></widget-icon>
+        </widget-cell>
+    </widget-row>
+    <wr class="primary" clickable ng-click="goToConfig()">
+        <wc fill>
+            <span class="accent">Configure Plan</span>
+        </wc>
+        <wc>
+            <widget-icon name="wrench"></widget-icon>
+        </wc>
+    </wr>
+
+    <wr>
+        <div class="progress" style="height: 20px; width: 90%; margin-left: 5%">
+            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{first}}%">Major</div>
+            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{second}}%">Minor</div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{third}}%">Required</div>
+        </div>
+    </wr>
 </script>
 
-<!-- This template gets shown when user clicks one of the items in the list -->
-<script type="text/ng-template" id="degreeTracker1Details.html"> 
-	<div class="item">
-		{{detailsItem.title}}
-	</div>
-	<div class="item item-text-wrap"><span ng-repeat= "tag in detailsItem.tags" class="badge badge-balanced">{{tag}}</span></div>
-	<div class="item item-text-wrap"><p>{{detailsItem.details}}</p></div>
+<script type="text/ng-template" id="degreeTracker1Details.html">
+    <wr>
+        <wc>
+            <h2>{{detailsItem.title}}</h2></wc>
+    </wr>
+
+    <widget-row ng-repeat="req in detailsItem.requirements">
+        <widget-cell fill clickable>
+            <label class="fill">
+                <input id="req.checkBox" type="checkbox" ng-model="req.checkbox.value" ng-change="checkboxChanged(myCourses)" /> {{req.title}}</label>
+        </widget-cell>
+        <widget-cell clickable ng-click="showDetailDetails(req)">
+            <widget-icon name="angle-right"></widget-icon>
+        </widget-cell>
+    </widget-row>
+</script>
+
+
+<script type="text/ng-template" id="degreeTracker1DetailDetails.html">
+    <wr>
+        <wc>
+            <h2>{{detailDetailsItem.title}}</h2></wc>
+    </wr>
+    <wr>
+        <wc>
+            <div class="pDetails">{{detailDetailsItem.description}}</div>
+        </wc>
+    </wr>
+</script>
+
+<script type="text/ng-template" id="degreeTracker1Config.html">
+    <wr>
+        <div>
+            <label for="tags">Search: </label>
+            <input type="text" id="tags" ng-model="searchBox.title" />
+            <widget-row ng-repeat="item in allPlans | filter: searchBox" clickable>
+                <widget-cell fill>
+                    <label class="fill">
+                    <input id="item.checkBox" type="checkbox" ng-model="item.checkbox.value" ng-change="checkboxChanged()"/> {{item.title}}</label>
+                </widget-cell>
+            </widget-row>
+        </div>
+    </wr>
 </script>

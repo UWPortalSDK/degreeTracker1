@@ -1,5 +1,5 @@
 <!-- Primary template that will get shown when widget loads -->
-<script type="text/ng-template" id="degreeTracker1Main.html">
+<script type="text/ng-template" id="degreeTracker1Main.html" data-ng-init="init()">
     <widget-row ng-repeat="item in myPlans" clickable ng-click="showDetails(item)">
         <widget-cell fill>
             <span class="itemName">{{item.title}}</span>
@@ -18,10 +18,10 @@
     </wr>
 
     <wr>
-        <div class="progress" style="height: 15px; width: 90%; margin-left: 5%" data-ng-init="init()">
-            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{first}}%"></div>
-            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{second}}%"></div>
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{third}}%"></div>
+        <div class="progress" style="height: 20px; width: 90%; margin-left: 5%">
+            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{first}}%">Major</div>
+            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{second}}%">Minor</div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{third}}%">Required</div>
         </div>
     </wr>
 </script>
