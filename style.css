@@ -2,5 +2,8 @@
 	margin-right:5px;
 }
 .fill {
-    width: 100%
+    width: 100%;
+}
+.pbar {
+    margin-top: -20px;
 }
