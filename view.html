@@ -37,8 +37,7 @@
 
     <widget-row ng-repeat="req in detailsItem.requirements">
         <widget-cell>
-            <input id="checkBox" type="checkbox" ng-model="checkbox.value" ng-change="checkboxChanged()"/>
-            <!--Need to link checkboxes-->
+            <input id="req.checkBox" type="checkbox" ng-model="req.checkbox.value" ng-change="checkboxChanged()"/>
         </widget-cell>
         <widget-cell fill clickable ng-click="showDetailDetails(req)">
             <span class="itemName">{{req.title}}</span>
@@ -69,12 +68,11 @@
             <input id="tags" />
         </div>
     </wr>
-    <widget-row ng-repeat="item in items" clickable ng-click="showDetails(item)">
+    <widget-row ng-repeat="item in items">
         <widget-cell>
-            <input id="checkBox" type="checkbox" ng-model="checkbox.value" ng-change="checkboxChanged()"/>
-            <!--Need to link checkboxes-->
+            <input id="item.checkBox" type="checkbox" ng-model="item.checkbox.value" ng-change="checkboxChanged()"/>
         </widget-cell>
-        <widget-cell fill clickable ng-click="showDetailDetails(req)">
+        <widget-cell fill>
             <span class="itemName">{{item.title}}</span>
         </widget-cell>
     </widget-row>
